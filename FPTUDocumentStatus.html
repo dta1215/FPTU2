@@ -89,6 +89,15 @@
                 done: "#0DB04B"
             }
         }
+
+        $('#RegDocStatus, #NBDocStatus, #NEDocStatus').keyup((e)=>{
+            let currElement = $(e.target)
+            if(isNaN(currElement.val())){
+                currElement.val(currElement.val().replace(/[a-z]|\W|/g, ""))
+            }
+        })
+
+
         // let APIResult = {
         //     LeadId: 1,
         //     Step: 2,
@@ -179,8 +188,32 @@
                 alert("Nhập dữ liệu")
             }
 
-            
         })
+
+        const StatusColors = {
+            "disable": "#BDBDBD",
+            "submit":  "#FFFFFF",
+            "waiting": "#0066B2",
+            "refuse":  "#FD0202",
+            "done":    "#0DB04B",
+        }
+        const StatusIcons = {
+            "submit":     "#src",
+            "prewaiting": "#src",
+            "waiting":    "#src",
+            "prechecked": "#src",
+            "checked":    "#src"
+        }
+
     </script>
+
+    <!-- <hr>
+    <div style="background-color: #3333;">
+        <img src="./icons/FPTUProject/emptyFile.png" alt="">
+        <img src="./icons/FPTUProject/checkedFile.png" alt="">
+        <img src="./icons/FPTUProject/checked.png" alt="">
+        <img src="./icons/FPTUProject/activeFile.png" alt="">
+        <img src="./icons/FPTUProject/processFile.png" alt="">
+    </div> -->
 </body>
 </html>
