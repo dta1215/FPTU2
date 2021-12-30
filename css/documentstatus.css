@@ -1,0 +1,109 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+.Status-Profile {
+    width: 56%;
+    margin: auto;
+    position: relative;
+    background: #F0F2F5;
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 300px;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.Status-Profile h5 {
+    font-size: 16px;
+    font-style: normal;
+    padding: 18px;
+}
+.processingFile-Area {
+    padding: 0 40px;
+    position: absolute;
+    width: 100%;
+    left: 1%;
+    right: 1%;
+    margin: auto;
+}
+.timeline-Area {
+    position: relative;
+    min-height: 60px;
+}
+.timeline-Icon {
+    position: absolute;
+    transform: scale(0.55) !important;
+    object-fit: contain;
+    left: 0;
+}
+.status-ChildFile {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    transform: scale(0.8);
+}
+.status-Area {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.statusIcon {
+    position: absolute;
+}
+.statusIcon-stroke {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: solid #6161618c 1px;
+}
+.statusIcon-background {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #6161618c;
+    transform: scale(0.85);
+    top: 0;
+    left: 0;
+}
+img.statusIcon.layer3 {
+    top: 15px;
+    left: 16px;
+    width: 30px;
+    height: 30px;
+}
+.arrowIcon {
+    width: 40px;
+    position: relative;
+    transform: scale(150%);
+}
+.statusTitle {
+    width: 68px;
+    position: absolute;
+    text-align: center;
+    top: 64px;
+    left: -4px;
+    font-size: 14px;
+}
+.status-description {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+}
+
+
+/* common */
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
