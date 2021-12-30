@@ -252,9 +252,31 @@
             }else{
                 alert("Nhập dữ liệu")
             }
-
-
         })
+
+
+        let enableDrag
+        let offsetX
+
+        $(document).mousedown((e)=>{
+            enableDrag = true
+            console.log($(e.target).offset(), e.clientX);
+            offsetX = $(e.target).offset().left - e.clientX
+        })
+
+        $(document).mousemove((e)=>{
+            if(enableDrag){
+                $('.timeline-Icon').offset({
+                    left: e.clientX + offsetX
+                })
+            }
+        })
+
+        $(document).mouseup((e)=>{
+            enableDrag = !enableDrag
+        })
+
+
     </script>
 
     <!-- Colors -->

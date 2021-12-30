@@ -38,6 +38,7 @@ body{
     transform: scale(0.55) !important;
     object-fit: contain;
     left: 0;
+    cursor: move;
 }
 .status-ChildFile {
     width: 60px;
