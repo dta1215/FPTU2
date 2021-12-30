@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<style>
+    .progress-Container {
+        display: block;
+        margin: auto;
+        width: 50%;
+        padding: 20px 0;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="progress-Container">
+        <div>
+            <h1 class="document-Title"></h1>
+            <h5 class="document-Content"></h5>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="label-control">Lead Progress Step</label>
+                <input class="form-control" id="LeadProgressStep" value="1" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="label-control">Register Document</label>
+                <input class="form-control" id="RegDocStatus" value="" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="label-control">NB Document</label>
+                <input class="form-control" id="NBDocStatus" value="" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="label-control">NE Document</label>
+                <input class="form-control" id="NEDocStatus" value="" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="label-control"></label>
+                <button id="btnTest" class="btn btn-primary form-control">Change</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const DocumentStatusHandler = {
+            DocumentSteps: {
+                RegDoc: {
+                    Name: "Hồ sơ đăng ký xét tuyển",
+                    Step: [1,2]
+                },
+                NBDoc: {
+                    Name: "Hồ sơ giữ chỗ",
+                    Step: [3,4]
+                },
+                NEDoc: {
+                    Name: "Hồ sơ nhập học",
+                    Step: [5,6]
+                },
+            },
+            CommonStatus: {
+                1: "Đã nộp hồ sơ",
+                2: "Hồ sơ đang chờ duyệt",
+                3: "Hồ sơ bị từ chối",
+                4: "Hồ sơ đang chờ duyệt",
+                5: "Đã hoàn thành hồ sơ"
+            },
+            StatusColor: {
+                disable: "#BDBDBD",
+                submit: "#FFFFFF",
+                waiting: "#0066B2",
+                resufe: "#FD0202",
+                done: "#0DB04B"
+            }
+        }
+        // let APIResult = {
+        //     LeadId: 1,
+        //     Step: 2,
+        //     RegDoc: {
+        //         Id: 1,
+        //         Status: 5
+        //     },
+        //     NBDoc: {
+        //         Id: 1,
+        //         Status: 5
+        //     },
+        //     NEDoc: null
+        // }
+
+        // if(APIResult){
+        //     const currStep = APIResult.Step
+        //     const currStatus = DocumentStatusHandler.DocumentSteps
+        //     const currProgress = Object.entries(currStatus).filter((doc)=>{
+        //         if(doc[1].Step.includes(APIResult.Step)){
+        //             if(APIResult[`${doc[0]}`]){
+        //                 const getCurrStatus = APIResult[`${doc[0]}`].Status
+        //                 $('.document-Title').text(doc[1].Name)
+        //                 $('.document-Content').text(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`])
+
+        //                 console.log(doc[1].Name);
+        //                 console.log(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]);
+        //                 return doc
+        //             }else{
+        //                 console.error(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
+        //                 alert(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
+        //             }
+        //         }
+        //     })
+        // }
+        // alert("Lỗi Step và Document không khớp")
+
+        
+
+        $('#btnTest').click(()=>{
+            let Step = $('#LeadProgressStep').val()
+            let RegDocStatus = $('#RegDocStatus').val()
+            let NBDocStatus = $('#NBDocStatus').val()
+            let NEDocStatus = $('#NEDocStatus').val()
+
+            if(!NBDocStatus) NBDocStatus = null
+            if(!NEDocStatus) NEDocStatus = null
+
+            APIResult = {
+                // LeadId: 1,
+                Step: parseInt(Step),
+                RegDoc: {
+                    // Id: 1,
+                    Status: parseInt(RegDocStatus),
+                },
+                NBDoc: {
+                    // Id: 1,
+                    Status: parseInt(NBDocStatus)
+                },
+                NEDoc: {
+                    // Id: 1,
+                    Status: parseInt(NEDocStatus)
+                }
+            }
+
+            if(APIResult.RegDoc.Status){
+                const currStep = APIResult.Step
+                const currStatus = DocumentStatusHandler.DocumentSteps
+                const currProgress = Object.entries(currStatus).filter((doc)=>{
+                    if(doc[1].Step.includes(APIResult.Step)){
+                        if(APIResult[`${doc[0]}`]){
+                            const getCurrStatus = APIResult[`${doc[0]}`].Status
+                            if(getCurrStatus <= 5 && getCurrStatus > 0){
+                                $('.document-Title').text(doc[1].Name)
+                                $('.document-Content').text(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`])
+                                console.log(doc[1].Name);
+                                console.log(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]);
+                                return doc
+                            }else{
+                                alert('Step và Document không khớp, kiểm tra lại Step || Document hiện tại')
+                            }
+                        }else{
+                            console.error(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
+                            alert(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
+                        }
+                    }
+                })
+            }else{
+                alert("Nhập dữ liệu")
+            }
+
+            
+        })
+    </script>
+</body>
+</html>
