@@ -11,6 +11,9 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <style>
+    .statusIcon.layer1.statusIcon-stroke {
+        box-shadow: 0px 2px 8px 2px rgb(138 138 138 / 52%);
+    }
     .progress-Container {
         display: block;
         margin: auto;
@@ -18,6 +21,73 @@
         padding: 20px 0;
         text-align: center;
     }
+    img.timeline-Icon.status-ChildFile {
+        animation: blink .5s ease infinite;
+    }
+    .currStatus:after {
+        content: '';
+        height: 30px;
+        width: 30px;
+        background: #d9c7f8f5;
+        position: absolute;
+        top: 12px;
+        left: 25%;
+        z-index: 111;
+        animation: publeone .7s infinite;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    .currStatus::before {
+        content: '';
+        height: 30px;
+        width: 30px;
+        border: solid #8b94b41f 1px;
+        position: absolute;
+        top: 12px;
+        left: 25%;
+        z-index: 111;
+        animation: publeone2 2s infinite;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    @keyframes blink {
+        from { opacity: 0; top: -1px;}
+        to { opacity: 1; top: 4px;}
+    }
+    @keyframes publeone {
+        from {
+            animation-timing-function: ease;
+        }
+        50% {
+        animation-timing-function: ease;
+            transform: scale(3);
+        /*  height: 1px;
+            width: 1px;*/
+        }
+        to {
+            animation-timing-function: ease;
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+    @keyframes publeone2 {
+        from {
+            animation-timing-function: ease;
+        }
+        50% {
+        animation-timing-function: ease;
+            transform: scale(4);
+        /*  height: 1px;
+            width: 1px;*/
+        }
+        to {
+            animation-timing-function: ease;
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+
 </style>
 <body>
     <div class="Status-Profile">
@@ -191,6 +261,25 @@
                 }
             }
 
+            //  APIResult = {
+            //     LeadId: 1,
+            //     Step: 4,
+            //     RegDoc: {
+            //         // Id: 1,
+            //         Status: 1,
+            //     },
+            //     NBDoc: {
+            //         // Id: 1,
+            //         Status: 2
+            //     },
+            //     NEDoc: {
+            //         // Id: 1,
+            //         Status: 3
+            //     }
+            // }
+            // console.log(APIResult);
+
+
             if(APIResult.RegDoc.Status){
                 const currStep = APIResult.Step
                 const currStatus = DocumentStatusHandler.DocumentSteps
@@ -202,7 +291,6 @@
                                 $('.document-Title').text(doc[1].Name)
                                 $('.document-Content').text(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`])
                                 
-
                                 const timelineIcon = $('.timeline-Icon')
                                 const statusElement = $('.status-ChildFile').eq(APIResult.Step)
                                 const currStatusStrokeElement = statusElement.children().eq(0)
@@ -210,6 +298,9 @@
                                 const currStatusIcon = statusElement.children().eq(2)
 
                                 const currTitle = statusElement.children().eq(3).text(`${DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]}`)
+
+                                $(".status-Area").find(".status-ChildFile").removeClass("currStatus")
+                                statusElement.addClass("currStatus")
 
                                 timelineIcon.animate({
                                     left: `${statusElement.position().left - 6 }px`
@@ -252,7 +343,29 @@
             }else{
                 alert("Nhập dữ liệu")
             }
+
+            let overedFiles = $('.currStatus').prevAll(".status-ChildFile").toArray()
+            console.log(overedFiles);
+            [...overedFiles].map((file, i)=>{
+                ++i
+                if(overedFiles.length % 2 === 0){
+                    if(i % 2 == 0){
+                        console.log("Da nop ho so");
+                    }else{
+                        console.log("Da hoan thanh");
+                    }
+                }
+                if(overedFiles.length % 2 != 0){
+                    if(i % 2 == 0){
+                        console.log("Da hoan thanh");
+                    }else{
+                        console.log("Da nop ho so");
+                    }
+                }
+            })
         })
+
+        
 
 
         let enableDrag
