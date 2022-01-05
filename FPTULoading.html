@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<style>
+    .modal-Background {
+        display: none;
+        position: fixed;
+        top: 10%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #fafafadb;
+        z-index: 99;
+        animation: fadeIn 2s ease forwards;
+    }
+    @keyframes fadeIn {
+        from { background: white;}
+        to {background: #fafafadb;}
+    }
+    .modal-Main{
+
+    }
+    .loading-Icon {
+        margin: auto;
+        margin-top: 15%;
+        width: 3em;
+        height: 3em;
+        border-radius: 50%;
+        border-top: solid #3333;
+        border: solid #f08f17 3px;
+        border-top: solid white 1px;
+        border-top: solid #0000 3px;
+        animation: spinning 2s linear infinite;
+    }
+    /* border-left: solid #0066B2 3px;
+    border-bottom: solid #0DB04B 3px; */    
+    .modal-Main {
+        position: relative;
+        /* top: 50%; */
+        animation: toggle 1.5s linear infinite;
+    }
+    @keyframes toggle{
+        from { opacity: 0}
+        to { opacity: 1}
+    }
+    
+
+    img.FPTlogo-Icon {
+        width: 15%;
+        margin: auto;
+        display: block;
+        position: relative;
+        top: 25px;
+    }
+
+    @keyframes spinning{
+        from { transform: rotate(0deg)}
+        to {transform: rotate(360deg)}
+    }
+</style>
+
+<div class="modal-Background">
+    <div class="loading-Icon"></div>
+    <div class="modal-Main">
+        <img class="FPTlogo-Icon" src="./LogoFPTU.svg" />
+    </div>
+</div>
+
+    <script>
+        const loadingModal = {
+            state: {
+                isLoading: false,
+                title: "",
+                content: ""
+            },
+            setState: async function(isLoading = true, title = this.title, content = this.content){
+
+            },
+            getState: function (){
+                return this.state
+            },
+            setLoading: function (){
+                this.state.isLoading = !this.state.isLoading;
+                this.isLoaded()
+            },
+            cancleLoading: function (){
+                this.state.isLoading = !this.state.isLoading;
+
+                this.isLoaded()
+            },
+            isLoaded: function(){
+                if(this.state.isLoading){
+                    $(".modal-Background").show()
+                }else{
+                    $(".modal-Background").hide()
+                }
+            }
+        }
+
+        loadingModal.setLoading()
+
+    </script>
+
+
+<style>
+    body{
+        overflow-x: hidden;
+    }
+    .messagebox-Container {
+        width: 400px;
+        height: auto;
+        max-height: 400px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 999;
+        padding: 4px 10px;
+        border-radius: 10px;
+    }
+    .messagebox-Child {
+        border: solid #001ba109 1px;
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 6px 0px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        color: #212529;
+        font-family: inherit;
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #f27125cf;
+        color: white;
+        box-shadow: 0px 2px 3px 1px #41414129;
+        font-size: 14px;
+        animation: fadeIn 1s ease backwards;
+    }
+    @keyframes fadeIn {
+        from {transform: translateY(10px) ;opacity: 0;}
+        to {transform: translateY(0px); opacity: 1;}
+    }
+    
+    .btnCloseMessage {
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 18px;
+        top: -14px;
+        color: #e6e6e6;
+    }
+    .btnCloseMessage:hover{
+        color: white;
+    }
+    .messagebox-Title{
+        display: block;
+        width: 100%;
+        position: relative;
+        left: 6%;
+    }
+    .messagebox-Content{
+        min-width: 70%;
+    }
+    .messagebox-Title {
+        display: block;
+        position: relative;
+        left: 7%;
+        font-size: 16px;
+    }
+    
+</style>
+<div class="messagebox-Container">
+    <!-- <div class="messagebox-Child">
+        <h5 class="messagebox-Title">Complete</h5>
+        <text class="messagebox-Content">Cập nhật thông tin thí sinh thành công</text><a><i class="btnCloseMessage fas fa-times"></i></a>
+    </div>
+    <div class="messagebox-Child">
+        <h5 class="messagebox-Title">Complete</h5>
+        <text class="messagebox-Content">Cập nhật thông tin thất bại</text><a><i class="btnCloseMessage fas fa-times"></i></a>
+    </div>
+    <div class="messagebox-Child">
+        <h5 class="messagebox-Title">Complete</h5>
+        <text class="messagebox-Content">Cập nhật thông tin thí sinh thành công</text><a><i class="btnCloseMessage fas fa-times"></i></a>
+    </div> -->
+</div>
+<button id="btnTest" class="btn btn-sm btn-primary">Updated</button>
+    
+    <script>
+        
+        const FPTUNotifyHandler = {
+            Title: "",
+            Content: "",
+            Count: 0,
+            MessageIDs: [],
+            ShowMessage: (title = "", content = "", autoCloseMessage = false, callback = null) => {
+                FPTUNotifyHandler.Title = title
+                FPTUNotifyHandler.Content = content
+
+                // console.log(FPTUNotifyHandler.Content, FPTUNotifyHandler.MessageIDs);
+
+                if(content){
+                    FPTUNotifyHandler.AppendMessage(title, content)
+                }else{
+                    FPTUNotifyHandler.AppendMessage("Không có nội dung nào", "")
+                }
+                // Sau khi append, lang nghe su kien (dong/tat message box) close message
+                FPTUNotifyHandler.CloseMessage()
+                
+                if(autoCloseMessage){
+                    FPTUNotifyHandler.AutoCloseMessage()
+                }
+                
+                if(callback){
+                    callback()
+                }
+            },
+            CloseMessage: () => {
+                $(document).on("click", ".btnCloseMessage", (e)=>{
+                    const currCloseBtn = $(e.target)
+                    const messageID = currCloseBtn.parents().eq(1).attr("messageid")
+
+                    const currMessageElement = $(`.messagebox-Child[messageId="${messageID}"]`)
+
+                    currMessageElement.animate({
+                        "right": "-400"
+                    }, 500, "swing", ()=>{
+                        currMessageElement.remove()
+                        FPTUNotifyHandler.MessageIDs.splice(FPTUNotifyHandler.MessageIDs.indexOf(messageID - 1), 1)
+
+                        if(FPTUNotifyHandler.MessageIDs.length == 0){
+                            FPTUNotifyHandler.Count = 0
+                        }
+                    })
+                })
+            },
+            AppendMessage: (title = "", content = "") => {
+                FPTUNotifyHandler.MessageIDs.push(FPTUNotifyHandler.Count++)
+                const messageHTML = `<div class="messagebox-Child" messageId="${FPTUNotifyHandler.Count}">
+                                        <h5 class="messagebox-Title">${title ?? ""}</h5>
+                                        <text class="messagebox-Content">${content ?? "No content"}</text><a><i title="Đóng" class="btnCloseMessage fas fa-times"></i></a>
+                                    </div>`
+                $('.messagebox-Container').append(messageHTML)
+            },
+            GetTitle: () => {
+                return FPTUNotifyHandler.Title
+            },
+            GetContent: () => {
+                return FPTUNotifyHandler.Content
+            },
+            AutoCloseMessage: (perTime = 7000)=>{
+                const autoMessenger = window.setInterval(()=>{
+                    const currMessageElement = $(`.messagebox-Child[messageId="${FPTUNotifyHandler.MessageIDs[0] + 1}"]`)
+
+                    currMessageElement.animate({
+                        "right": "-400"
+                    }, 500, "swing", ()=>{
+                        currMessageElement.remove()
+                        FPTUNotifyHandler.MessageIDs.shift()
+                        
+                        // Clean up after each message appended, (avoid issues propagation )
+                        window.clearInterval(autoMessenger)
+
+                        if(FPTUNotifyHandler.MessageIDs.length == 0){
+                            FPTUNotifyHandler.Count = 0
+                        }
+                    })
+                    
+                }, perTime)
+            }
+        }
+
+        $('#btnTest').click((e)=>{
+            FPTUNotifyHandler.ShowMessage("A", "xyz", true)
+        })
+
+
+        const MessageHandler = (() => {
+            return {
+                Message: ({auto = true, title = `` })=>{
+                    console.log(title);
+                    console.log("Alert Message");
+                }
+            }
+        })()
+
+        MessageHandler.Message({title: "Message A"})
+    </script>
+</body>
+</html>
