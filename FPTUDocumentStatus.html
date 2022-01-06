@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/documentstatus.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <style>
+    .statusIcon.layer1.statusIcon-stroke {
+        box-shadow: 0px 2px 8px 2px rgb(138 138 138 / 52%);
+    }
     .progress-Container {
         display: block;
         margin: auto;
@@ -17,8 +21,131 @@
         padding: 20px 0;
         text-align: center;
     }
+    img.timeline-Icon.status-ChildFile {
+        animation: blink .5s ease infinite;
+    }
+    .currStatus:after {
+        content: '';
+        height: 30px;
+        width: 30px;
+        background: #d9c7f8f5;
+        position: absolute;
+        top: 12px;
+        left: 25%;
+        z-index: 111;
+        animation: publeone .7s infinite;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    .currStatus::before {
+        content: '';
+        height: 30px;
+        width: 30px;
+        border: solid #8b94b41f 1px;
+        position: absolute;
+        top: 12px;
+        left: 25%;
+        z-index: 111;
+        animation: publeone2 2s infinite;
+        border-radius: 100%;
+        z-index: -1;
+    }
+    @keyframes blink {
+        from { opacity: 0; top: -1px;}
+        to { opacity: 1; top: 4px;}
+    }
+    @keyframes publeone {
+        from {
+            animation-timing-function: ease;
+        }
+        50% {
+        animation-timing-function: ease;
+            transform: scale(3);
+        /*  height: 1px;
+            width: 1px;*/
+        }
+        to {
+            animation-timing-function: ease;
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+    @keyframes publeone2 {
+        from {
+            animation-timing-function: ease;
+        }
+        50% {
+        animation-timing-function: ease;
+            transform: scale(4);
+        /*  height: 1px;
+            width: 1px;*/
+        }
+        to {
+            animation-timing-function: ease;
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+
 </style>
 <body>
+    <div class="Status-Profile">
+        <div>
+            <h5>Trạng thái hồ sơ</h5>
+        </div>
+        <div class="processingFile-Area">
+            <div class="timeline-Area">
+                <img class="timeline-Icon status-ChildFile" src="./icons/user.svg" style="left: 122.375px;">
+            </div>
+            <div class="status-Area">
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke"></div>
+                    <div class="statusIcon layer2 statusIcon-background"></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Đang cập nhật hồ sơ</span>
+                </div>
+                <img class="arrowIcon" src="./icons/arrow.svg" >
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke" ></div>
+                    <div class="statusIcon layer2 statusIcon-background" ></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Hồ sơ đang chờ duyệt</span>
+                </div>
+                <img class="arrowIcon" src="./icons/arrow.svg" >
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke"></div>
+                    <div class="statusIcon layer2 statusIcon-background"></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Giữ chỗ</span>
+                </div>
+                <img class="arrowIcon" src="./icons/arrow.svg" >
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke"></div>
+                    <div class="statusIcon layer2 statusIcon-background"></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Đang chờ duyệt</span>
+                </div>
+                <img class="arrowIcon" src="./icons/arrow.svg" >
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke"></div>
+                    <div class="statusIcon layer2 statusIcon-background"></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Hồ sơ nhập học</span>
+                </div>
+                <img class="arrowIcon" src="./icons/arrow.svg" >
+                <div class="status-ChildFile">
+                    <div class="statusIcon layer1 statusIcon-stroke"></div>
+                    <div class="statusIcon layer2 statusIcon-background"></div>
+                    <img class="statusIcon layer3" src="./icons/prewaiting.svg">
+                    <span class="statusTitle">Trạng thái nhập học</span>
+                </div>
+            </div>
+        </div>
+        <div class="status-description">
+            <p class="text-center">Cập nhật hồ sơ xét tuyển và học bổng</p>
+        </div>
+    </div>
     <div class="progress-Container">
         <div>
             <h1 class="document-Title"></h1>
@@ -30,25 +157,25 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label class="label-control">Lead Progress Step</label>
-                <input class="form-control" id="LeadProgressStep" value="1" />
+                <input type="number" min="1" max="6" class="form-control" id="LeadProgressStep" value="1" />
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label class="label-control">Register Document</label>
-                <input class="form-control" id="RegDocStatus" value="" />
+                <input type="number" min="1" max="5" class="form-control" id="RegDocStatus" value="" />
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label class="label-control">NB Document</label>
-                <input class="form-control" id="NBDocStatus" value="" />
+                <input type="number" min="1" max="5" class="form-control" id="NBDocStatus" value="" />
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
                 <label class="label-control">NE Document</label>
-                <input class="form-control" id="NEDocStatus" value="" />
+                <input type="number" min="1" max="5" class="form-control" id="NEDocStatus" value="" />
             </div>
         </div>
         <div class="col-md-2">
@@ -81,72 +208,37 @@
                 4: "Hồ sơ đang chờ duyệt",
                 5: "Đã hoàn thành hồ sơ"
             },
-            StatusColor: {
+            StatusColors: {
                 disable: "#BDBDBD",
                 submit: "#FFFFFF",
                 waiting: "#0066B2",
-                resufe: "#FD0202",
-                done: "#0DB04B"
+                refuse: "#FD0202",
+                done: "#0DB04B",
+            },
+            StatusIcons: {
+                submit:     "./icons/submit.svg",
+                prewaiting: "./icons/prewaiting.svg",
+                waiting:    "./icons/waiting.svg",
+                prechecked: "./icons/prechecked.svg",
+                checked:    "./icons/checked.svg"
             }
         }
-
         $('#RegDocStatus, #NBDocStatus, #NEDocStatus').keyup((e)=>{
             let currElement = $(e.target)
             if(isNaN(currElement.val())){
                 currElement.val(currElement.val().replace(/[a-z]|\W|/g, ""))
             }
         })
-
-
-        // let APIResult = {
-        //     LeadId: 1,
-        //     Step: 2,
-        //     RegDoc: {
-        //         Id: 1,
-        //         Status: 5
-        //     },
-        //     NBDoc: {
-        //         Id: 1,
-        //         Status: 5
-        //     },
-        //     NEDoc: null
-        // }
-
-        // if(APIResult){
-        //     const currStep = APIResult.Step
-        //     const currStatus = DocumentStatusHandler.DocumentSteps
-        //     const currProgress = Object.entries(currStatus).filter((doc)=>{
-        //         if(doc[1].Step.includes(APIResult.Step)){
-        //             if(APIResult[`${doc[0]}`]){
-        //                 const getCurrStatus = APIResult[`${doc[0]}`].Status
-        //                 $('.document-Title').text(doc[1].Name)
-        //                 $('.document-Content').text(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`])
-
-        //                 console.log(doc[1].Name);
-        //                 console.log(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]);
-        //                 return doc
-        //             }else{
-        //                 console.error(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
-        //                 alert(`Step và Document không khớp, kiểm tra lại Step || Document hiện tại`)
-        //             }
-        //         }
-        //     })
-        // }
-        // alert("Lỗi Step và Document không khớp")
-
-        
-
+        $('.timeline-Icon').css("left", "0px")
         $('#btnTest').click(()=>{
             let Step = $('#LeadProgressStep').val()
             let RegDocStatus = $('#RegDocStatus').val()
             let NBDocStatus = $('#NBDocStatus').val()
             let NEDocStatus = $('#NEDocStatus').val()
-
             if(!NBDocStatus) NBDocStatus = null
             if(!NEDocStatus) NEDocStatus = null
-
             APIResult = {
-                // LeadId: 1,
+                LeadId: 1,
                 Step: parseInt(Step),
                 RegDoc: {
                     // Id: 1,
@@ -162,6 +254,25 @@
                 }
             }
 
+            //  APIResult = {
+            //     LeadId: 1,
+            //     Step: 4,
+            //     RegDoc: {
+            //         // Id: 1,
+            //         Status: 1,
+            //     },
+            //     NBDoc: {
+            //         // Id: 1,
+            //         Status: 2
+            //     },
+            //     NEDoc: {
+            //         // Id: 1,
+            //         Status: 3
+            //     }
+            // }
+            // console.log(APIResult);
+
+
             if(APIResult.RegDoc.Status){
                 const currStep = APIResult.Step
                 const currStatus = DocumentStatusHandler.DocumentSteps
@@ -172,8 +283,47 @@
                             if(getCurrStatus <= 5 && getCurrStatus > 0){
                                 $('.document-Title').text(doc[1].Name)
                                 $('.document-Content').text(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`])
-                                console.log(doc[1].Name);
-                                console.log(DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]);
+
+
+                                const timelineIcon = $('.timeline-Icon')
+                                const statusElement = $('.status-ChildFile').eq(APIResult.Step)
+                                const currStatusStrokeElement = statusElement.children().eq(0)
+                                const currBackgroundElement = statusElement.children().eq(1)
+                                const currStatusIcon = statusElement.children().eq(2)
+
+                                const currTitle = statusElement.children().eq(3).text(`${DocumentStatusHandler.CommonStatus[`${getCurrStatus}`]}`)
+
+                                $(".status-Area").find(".status-ChildFile").removeClass("currStatus")
+                                statusElement.addClass("currStatus")
+
+                                timelineIcon.animate({
+                                    left: `${statusElement.position().left - 6 }px`
+                                }, 1000, "swing", ()=>{
+                                    ChangeCurrStatus(getCurrStatus)
+                                    
+                                    function ChangeCurrStatus(currStatus = 1){
+                                        if(currStatus == 1){
+                                            currStatusStrokeElement.css("border", `solid ${DocumentStatusHandler.StatusColors.waiting} 1px`)
+                                            currBackgroundElement.css("background", DocumentStatusHandler.StatusColors.waiting)
+                                            currStatusIcon.attr("src", DocumentStatusHandler.StatusIcons.submit)
+                                        }
+                                        if(currStatus == 5) {
+                                            currStatusStrokeElement.css("border", `solid ${DocumentStatusHandler.StatusColors.done} 1px`)
+                                            currBackgroundElement.css("background", DocumentStatusHandler.StatusColors.done)
+                                            currStatusIcon.attr("src", DocumentStatusHandler.StatusIcons.checked)
+                                        }
+                                        if(currStatus == 2 || currStatus == 4){
+                                            currStatusStrokeElement.css("border", `solid ${DocumentStatusHandler.StatusColors.waiting} 1px`)
+                                            currBackgroundElement.css("background", DocumentStatusHandler.StatusColors.waiting)
+                                            currStatusIcon.attr("src", DocumentStatusHandler.StatusIcons.prewaiting)
+                                        }
+                                        if(currStatus == 3){
+                                            currStatusStrokeElement.css("border", `solid ${DocumentStatusHandler.StatusColors.refuse} 1px`)
+                                            currBackgroundElement.css("background", DocumentStatusHandler.StatusColors.refuse)
+                                            currStatusIcon.attr("src", DocumentStatusHandler.StatusIcons.prewaiting)
+                                        }
+                                    }
+                                })
                                 return doc
                             }else{
                                 alert('Step và Document không khớp, kiểm tra lại Step || Document hiện tại')
@@ -188,32 +338,67 @@
                 alert("Nhập dữ liệu")
             }
 
+            let overedFiles = $('.currStatus').prevAll(".status-ChildFile").toArray()
+            console.log(overedFiles);
+            [...overedFiles].map((file, i)=>{
+                ++i
+                if(overedFiles.length % 2 === 0){
+                    if(i % 2 == 0){
+                        console.log("Da nop ho so");
+                    }else{
+                        console.log("Da hoan thanh");
+                    }
+                }
+                if(overedFiles.length % 2 != 0){
+                    if(i % 2 == 0){
+                        console.log("Da hoan thanh");
+                    }else{
+                        console.log("Da nop ho so");
+                    }
+                }
+            })
         })
 
-        const StatusColors = {
-            "disable": "#BDBDBD",
-            "submit":  "#FFFFFF",
-            "waiting": "#0066B2",
-            "refuse":  "#FD0202",
-            "done":    "#0DB04B",
-        }
-        const StatusIcons = {
-            "submit":     "./icons/FPTUProject/emptyFile.png",
-            "prewaiting": "./icons/FPTUProject/processFile.png",
-            "waiting":    "./icons/FPTUProject/activeFile.png",
-            "prechecked": "./icons/FPTUProject/checkedFile.png",
-            "checked":    "./icons/FPTUProject/checked.png"
-        }
+        let enableDrag
+        let offsetX
+        $(document).mousedown((e)=>{
+            enableDrag = true
+            console.log($(e.target).offset(), e.clientX);
+            offsetX = $(e.target).offset().left - e.clientX
+        })
+        $(document).mousemove((e)=>{
+            if(enableDrag){
+                $('.timeline-Icon').offset({
+                    left: e.clientX + offsetX
+                })
+            }
+        })
+        $(document).mouseup((e)=>{
+            enableDrag = !enableDrag
+        })
     </script>
-
-    <hr>
-    <div style="background-color: #3333;">
-        <img src="./icons/FPTUProject/emptyFile.png" alt="">
-        <img src="./icons/FPTUProject/processFile.png" alt="">
-        <img src="./icons/FPTUProject/activeFile.png" alt="">
-        <img src="./icons/FPTUProject/checkedFile.png" alt="">
-        <img src="./icons/FPTUProject/checked.png" alt="">
-    </div>
-
+    <!-- Colors -->
+    <!-- const StatusColors = {
+        "disable": "#BDBDBD",
+        "submit":  "#FFFFFF",
+        "waiting": "#0066B2",
+        "refuse":  "#FD0202",
+        "done":    "#0DB04B",
+    }
+    const StatusIcons = {
+        "submit":     "#src",
+        "prewaiting": "#src",
+        "waiting":    "#src",
+        "prechecked": "#src",
+        "checked":    "#src"
+    } -->
+    <!-- <hr>
+        <div style="background-color: #3333;">
+        <img src="./icons/FPTUProject/emptyFile.png" >
+        <img src="./icons/FPTUProject/checkedFile.png" >
+        <img src="./icons/FPTUProject/checked.png" >
+        <img src="./icons/FPTUProject/activeFile.png" >
+        <img src="./icons/FPTUProject/processFile.png" >
+    </div> -->
 </body>
 </html>
