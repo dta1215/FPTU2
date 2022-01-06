@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="Province" class="Contact">Tỉnh/Thành Phố:</label>
+            <select id="Province" name="Province" class="form-control WidthContact" required="">
+                <option value="" hidden>Chọn tỉnh/thành phố</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="District" class="Contact">Quận/Huyện:</label>
+            <select id="District" name="District" class="form-control WidthContact">
+                <option value="" hidden>Chọn quận/huyện</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Ward" class="Contact">Phường/Xã:</label>
+            <select id="Ward" name="Ward" class="form-control WidthContact">
+                <option value="" hidden>Chọn phường/xã</option>
+            </select>
+        </div>
+    </div>
+
+
+    <script>
+
+        LoadVNProvinces()
+        async function LoadVNProvinces(){
+            const ProvinceElement = $("select#Province")
+            const DistrictElement = $("select#District")
+            const WardElement = $("select#Ward")
+            
+            // DistrictElement.append(`<option value="" hidden>Chọn quận/huyện</option>`)
+            // WardElement.html(`<option value="" hidden>Chọn phường/xã</option>`)
+            const apis = [
+                "http://localhost:6001/apis/home/vndistricts/",
+                "http://localhost:6001/apis/home/vnwards/",
+                "http://localhost:6001/apis/home/vnprovinces/",
+            ]
+
+            const provinces = await $.get(`${apis[2]}`)
+            if(provinces){
+                const provinceHTML = provinces.map((province)=>{
+                    return `
+                        <option value="${province.Code}">${province.Name}</option>
+                    `
+                }).join('')
+                ProvinceElement.append(provinceHTML)
+            }
+            
+            ProvinceElement.change(async (e)=>{
+                const provinceID = $(e.target).val()
+
+                DistrictElement.empty()
+                WardElement.empty()
+                DistrictElement.append(`<option value="" hidden>Chọn quận/huyện</option>`)
+                WardElement.html(`<option value="" hidden>Chọn phường/xã</option>`)
+
+                const districts = await $.get(`${apis[0]}${provinceID}`)
+                if(districts){
+                    const districtHTML = districts.map((district)=>{
+                        return `
+                            <option value="${district.Code}">${district.Name}</option>
+                        `
+                    }).join('')
+                    DistrictElement.append(districtHTML)
+                }
+            })
+
+            DistrictElement.change(async (e)=>{
+                WardElement.empty()
+                WardElement.html(`<option value="" hidden>Chọn phường/xã</option>`)
+
+                const districtID = $(e.target).val()
+                const wards = await $.get(`${apis[1]}${districtID}`)
+                if(wards){
+                    const wardHTML = wards.map((ward)=>{
+                        return `
+                            <option value="${ward.Code}">${ward.Name}</option>
+                        `
+                    }).join('')
+                    WardElement.append(wardHTML)
+                }
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
