@@ -155,7 +155,7 @@
             $('#btnSendNotify').click(async (e)=>{
                 const message = $('#Content').val()
                 if(message){
-                     var settings = {
+                    var settings = {
                         "url": "https://api.fpt.ai/hmi/tts/v5",
                         "method": "POST",
                         // "timeout": 0,
@@ -172,54 +172,87 @@
                     $.ajax(settings).done(async function (data) {
                         console.log(data)
                         if(data.async){
-                            const mp3Link = await data.async
-                            if(mp3Link){
-                                const audioHTML = `
-                                    <audio id="Refuse" controls autoplay> 
-                                        <source src="${mp3Link}" type="audio/mpeg">
-                                    </audio>
-                                `
-                                $(".audioNotificationArea").append(audioHTML)
-                            }
+                            const mp3Link = data.async
+
+                            const audioHTML = `
+                                <audio id="Refuse" preload="auto"> 
+                                    <source src="${await mp3Link}" type="audio/mpeg">
+                                </audio>
+                            `
+                            $(".audioNotificationArea").html(audioHTML)
+                            
+                            var obj = document.getElementById('Refuse');
+
+                            obj.addEventListener('loadeddata', function() {
+                                if(obj.readyState >= 2)
+                                {
+                                    obj.play()
+                                }
+                            })
+
+                            // if(mp3Link){
+                            //     const audioHTML = `
+                            //         <audio id="Refuse" controls autoplay> 
+                            //             <source src="${mp3Link}" type="audio/mpeg">
+                            //         </audio>
+                            //     `
+                            //     $(".audioNotificationArea").append(audioHTML)
+                            // }
                         }
                     })
                 }
             })
         }
 
-        // TTS()
+        
         async function TTS(){
             // const api_key = "dta"
-            // var settings = {
-            //     "url": "https://api.fpt.ai/hmi/tts/v5",
-            //     "method": "POST",
-            //     // "timeout": 0,
-            //     "headers": {
-            //         "api-key": "0IN0DV7Ssmmg2Uj3w6BZRjVCMP22JWTH"
-            //     },
-            //     // "processData": false,
-            //     // "contentType": false,
-            //     "data": "Hồ sơ của bạn bị từ chối vì...",
-            //     error: (err) => {
-            //         console.log(err)
-            //         // alert("Ảnh quá mờ hoặc không phải ảnh CCCD. Vui lòng tải lại ảnh CCCD!");
-            //     }
-            // }
-            // $.ajax(settings).done(function (data) {
-            //     console.log(data)
-            //     console.log(data.async);
-            //     if(data.async) {
+            var settings = {
+                "url": "https://api.fpt.ai/hmi/tts/v5",
+                "method": "POST",
+                // "timeout": 0,
+                "headers": {
+                    "api-key": "0IN0DV7Ssmmg2Uj3w6BZRjVCMP22JWTH"
+                },
+                // "processData": false,
+                // "contentType": false,
+                "data": "Từ chối hồ sơ",
+                error: (err) => {
+                    console.log(err)
+                }
+            }
+            $.ajax(settings).done(async function (data) {
+                console.log(data)
+                if(data.async){
+                    const mp3Link = data.async
 
-            //     }
-            // })
+                    const audioHTML = `
+                        <audio id="Refuse" preload="auto"> 
+                            <source src="${await mp3Link}" type="audio/mpeg">
+                        </audio>
+                    `
+                    $(".audioNotificationArea").html(audioHTML)
+                    
+                    var obj = document.getElementById('Refuse');
 
-            const mp3Link = `https://file01.fpt.ai/text2speech-v5/short/2022-01-05/01fa98291e6eea4dc52cf3877a4b0fa3.mp3`
-            const audioHTML = `
-                <audio id="Refuse" controls autoplay> 
-                    <source src="${mp3Link}" type="audio/mpeg">
-                </audio>
-            `
-            $(".audioNotificationArea").append(audioHTML)
+                    obj.addEventListener('loadeddata', function() {
+                        if(obj.readyState >= 2)
+                        {
+                            obj.play()
+                        }
+                    })
+
+                    // if(mp3Link){
+                    //     const audioHTML = `
+                    //         <audio id="Refuse" controls autoplay> 
+                    //             <source src="${mp3Link}" type="audio/mpeg">
+                    //         </audio>
+                    //     `
+                    //     $(".audioNotificationArea").append(audioHTML)
+                    // }
+                }
+            })
+            
         }
 
 
