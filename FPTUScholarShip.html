@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"
+        integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"
+        integrity="sha512-XZEy8UQ9rngkxQVugAdOuBRDmJ5N4vCuNXCh8KlniZgDKTvf7zl75QBtaVG1lEhMFe2a2DuA22nZYY+qsI2/xA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./lib/messages_vi.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"
+        integrity="sha512-o6XqxgrUsKmchwy9G5VRNWSSxTS4Urr4loO6/0hYdpWmFUfHqGzawGxeQGMDqYzxjY9sbktPbNlkIQJWagVZQg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<style>
+    label.error{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: red;
+    }
+    .schorlarshipImage {
+        margin: auto;
+        margin-bottom: 8px;
+        object-fit: cover;
+        display: block;
+        width: 100%;
+        max-height: 140px;
+    }
+</style>
+
+<body>
+    <div id="Scholarship" class="Info-Student" style="">
+        <div class="title-main">
+            Đăng ký học bổng theo phương thức
+            <a class=""><i class="btnToggle toggleArrow"></i></a>
+        </div>
+        <div class="">
+            <div class="toggle-form" style="border-top: solid #bdbdbd 1px;">
+                <form id="ScholarshipForm" novalidate="novalidate">
+                    <div class="row" style="padding: 0; padding-left: 10px; margin: 0;">
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input id="cb-tab-1" name="cb-tab-1" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label label-title" for="flexCheckDefault">
+                                        Học bổng cấp thẳng
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8"></div>
+                        </div>
+                        <div class="row mt-4" id="scholarship-tab-1" style="display: none;">
+                            <div class="col-md-1"></div>
+                            <!-- Cot ben trai -->
+                            <!-- cot ben trai -->
+                            <!-- cot ben trai -->
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Tên cuộc thi</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input id="CompetitionName" name="CompetitionName" type="text" class="form-control error" placeholder="Nhập tên cuộc thi" aria-invalid="true"><label id="CompetitionName-error" class="error" for="CompetitionName" style="display: none;"></label>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4">
+                                        <input type="radio" id="FirstPrize" name="PrizeProff" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Giải Nhất</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img class="schorlarshipImage"  src="/icons/dummyImage.svg" alt="abc">
+                                        <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-4">
+                                        <input type="radio" id="SecondPrize" name="PrizeProff" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Giải Nhì</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img class="schorlarshipImage" src="/icons/dummyImage.svg" alt="abc">
+                                        <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- cot ben phai -->
+                            <!-- cot ben phai -->
+                            <!-- cot ben phai 3,14 -->
+                            <div class="col-md-5 offset-right">
+                                <div class="row">
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-7">
+    
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-md-5 ">
+                                        <input type="radio" id="ThirdPrize" name="PrizeProff" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Giải Ba</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img class="schorlarshipImage" src="/icons/dummyImage.svg" alt="abc">
+                                        <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-5 ">
+                                        <input type="radio" id="OtherPrize" name="PrizeProff" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Chứng chỉ hoặc giấy tờ xác nhận khác </label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img class="schorlarshipImage" src="/icons/dummyImage.svg" alt="abc">
+                                        <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Dự thi học bổng  du thi hoc bong -->
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input id="cb-tab-2" name="cb-tab-2" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label label-title" for="flexCheckDefault">
+                                        Dự thi học bổng 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8"></div>
+                        </div>
+                        <div class="row mt-2" id="scholarship-tab-2" style="">
+                            <div class="col-md-6" name="CompetitionType">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="radio" id="FirstType" key="DTHB-1" name="CompetitionType" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Tham gia đội tuyển quốc gia</label>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-sm-1" point="tham gia doi tuyen quoc gia"></div>
+                                    <div class="col-sm-11" key="DTHB-1">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="" class="offset-left-sm">Môn</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input id="Subject" name="Subject" type="text" class="form-control valid" aria-invalid="false">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="" class="offset-left-sm">Năm</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <select id="ConditionYear" name="ConditionYear" class="form-control">
+                                                            <option value="">2022</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row mt-2">
+                                            <div class="col-md-7">
+                                                <img class="schorlarshipImage" src="/icons/dummyImage.svg" alt="abc">
+                                                <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                                <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+    
+                                <div class="row mt-4">
+                                    <div class="col-md-8">
+                                        <input type="radio" id="SecondType" key="DTHB-2" name="CompetitionType" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Điểm GPA</label>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-1" mark="diem gpa"></div>
+                                    <div class="col-sm-11" key="DTHB-2">
+                                        <div class="row mt-2">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="" class="offset-left-sm">Điểm</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="GPAPoint" name="GPAPoint" placeholder="Số điểm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row mt-2">
+                                            <div class="col-md-7">
+                                                <img class="schorlarshipImage" src="/icons/dummyImage.svg" alt="abc">
+                                                <p class="scholarship-description">Upload ảnh chứng chỉ</p>
+                                                <button class="btn btn-primary btnUploadImageOfScholarship">Tải hình ảnh lên</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="radio" id="ThirdType" key="DTHB-3" name="CompetitionType" class="form-check-input">
+                                        <label for="" class="offset-left-sm">Theo học bạ THPT</label>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-8">
+                                        <button class="btn btn-primary">Lấy School Rank</button>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 scholarship-scrank" key="DTHB-3">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Tỉnh/ Thành Phố:</label>
+                                        <input type="text" id="Province" name="Province" class="form-control">
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Top: </label>
+                                        <input type="text" id="Top" name="Top" class="form-control">
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Mã School Rank:</label>
+                                        <input type="text" id="SchoolRankCode" name="SchoolRankCode" class="form-control">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="whitespace-sm"></div>
+                    <div class="mt-4">
+                        <label>Test</label>
+                        <button id="btnSaveProfile" class="btn btn-primary">Lưu phiếu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Scholarship Panel
+        //Scholarship Panel
+        //Scholarship Panel
+        //Scholarship Panel
+        $(document).ready(() => {
+            ScholarshipHandler()
+        })
+        function ScholarshipHandler() {
+            //Input tên cuộc thi
+            const CompetitionName = $('#CompetitionName')
+    
+            //Nút nhấn checkbox: Học bổng cấp thẳng: Khi nhấn vào đây sẽ ẩn/hiện form của nó (id: scholarship-tab-1)
+            const cbTab1 = $('#cb-tab-1')
+            const scholarshipTab1 = $('#scholarship-tab-1')
+            //Nút nhấn checkbox: Dự thi học bổng: Khi nhấn vào đây sẽ ẩn/hiện form của nó (id: scholarship-tab-2)
+            const cbTab2 = $('#cb-tab-2')
+            const scholarshipTab2 = $('#scholarship-tab-2')
+    
+            //Dùng như này thay vì để CSS display:none sẽ gây lỗi khi hiện mất thuộc tính flex
+            scholarshipTab1.hide() 
+            scholarshipTab2.hide()
+    
+            //Sự kiện nhấn checkbox để ẩn/hiện form
+            cbTab1.click(() => {
+                scholarshipTab1.fadeToggle(200)
+            })
+            cbTab2.click(() => {
+                scholarshipTab2.fadeToggle(200)
+            })
+            //Xử lý sự kiện tải ảnh lên
+    
+            $(".btnUploadImageOfScholarship").click(async (e) => {
+                const currBtnUploadFile = $(e.target)
+                $('.loadImageFile').remove()
+                const loadFileElement = `
+                    <input type="file" class="loadImageFile"  style="display: none;" />
+                `
+                $('body').append($(loadFileElement))
+                $('.loadImageFile')[0].click()
+                    
+                $('.loadImageFile').change((ev)=>{
+                    const currFile = ev.target.files[0]
+                    let isImageFile = currFile.type.includes("image")
+    
+                    if(isImageFile){
+                        // console.log(currFile);
+                        // Get current image base on current btnuploadfile position
+                        const currImageElement = currBtnUploadFile.parent().children().eq(0)
+                        currImageElement.attr("src", URL.createObjectURL(currFile))
+                        // console.log();
+                    }
+                })
+            })
+    
+            // Xử lý sự kiện ấn nút radio sẽ dữ liệu ảnh hiện tại, xóa hết các cái khác
+            $('input:radio[name="PrizeProff"]').click((e)=>{
+                let inputRadiosExceptCurrentElement = $('input:radio[name="PrizeProff"]').not(e.target);
+                [...inputRadiosExceptCurrentElement].map((element, i)=>{
+                    $(element).parent().next().children().eq(0).attr("src", "/icons/dummyImage.svg")
+                })
+                // console.log($(inputRadiosExceptCurrentElemesnt[0]).parent().next().children().eq(0).attr("src", ""));
+            })
+    
+            $('input:radio[name="CompetitionType"]').click((e)=>{
+                console.log(e)
+                let inputRadiosExceptCurrentElement = $('input:radio[name="CompetitionType"]').not(e.target);
+                [...inputRadiosExceptCurrentElement].map((element, i)=>{
+                    const elementKey = $(element).attr("key")
+                    const elementContainer = $(`div[key="${elementKey}"]`);
+                    [...elementContainer.find('input, img, select')].map((child, i)=>{
+                        if($(child).is('input')){
+                            $(child).val("")
+                        }
+                        if($(child).is('select')){
+                            $(child).val("")
+                        }
+                        if($(child).is('img')){
+                            $(child).attr("src", "/icons/dummyImage.svg")
+                        }
+                    })
+                })
+            })
+        }
+    
+        $('#ScholarshipForm').submit((e)=>{
+            e.preventDefault()
+        })
+    
+        $('#ScholarshipForm').validate({
+            //rules: {
+            //    CompetitionName: {
+            //        required: true
+            //    }
+            //    //CompetitionType:{
+            //    //    required: true
+            //    //},
+            //    //GPAPoint: {
+            //    //    required: true
+            //    //}
+            //}
+        })
+    
+        $('#ScholarshipForm').validate()
+    
+        //$.validator.setDefaults({
+        //    debug: true
+        //});
+        
+        $('#btnSaveProfile').click(async(e)=>{
+
+            let getSelectedTab = $('#cb-tab-2:checked, #cb-tab-1:checked')
+            if(getSelectedTab.length < 1){
+                // FPTUNotifyHandler.ShowMessage("Cảnh báo", "Vui lòng điền thông tin", true)
+            }
+            if(getSelectedTab.is("#cb-tab-1:checked")){
+                $('#CompetitionName').rules("add", {
+                    required: true
+                });
+            }
+
+            if(getSelectedTab.is("#cb-tab-2:checked")){
+                let getSelectedRadio = $('#scholarship-tab-2').find("input[type='radio']:checked")
+                
+                // Thêm/xóa validate khi chọn các tùy chọn, tránh bỏ sót thông tin
+                if(getSelectedRadio.is("input#FirstType")){
+                    $('#Subject').rules("add", {
+                        required: true
+                    });
+                }else{
+                    $('#Subject').rules("remove");
+                }
+
+                if(getSelectedRadio.is("input#SecondType")){
+                    $('#GPAPoint').rules("add", {
+                        required: true,
+                        number: true,
+                        min: 0,
+                        max: 10,
+                        maxlength: 2
+                    });
+                }else{
+                    $('#GPAPoint').rules("remove");
+                }
+
+
+            }
+
+            //const file = $('.loadImageFile')[0].files[0]
+           
+            //if(formatFileSize(file.size))
+    
+            /////// OK
+            /////// OK
+            /////// OK
+            //function test send multiple files(){
+                //OK (chay thu truyen nhieu file)
+                //const files = [] 
+                //files.push(file)
+                //files.push(file)
+                //files.push(file)
+                //files.map((file, i)=>{
+                //    form_data.append("files", files[i]);
+                //})
+            //}
+            
+    
+            //let form_data = new FormData();
+    
+            //form_data.append("type", "GPA")
+            //form_data.append("point", "8")
+            //form_data.append("file", file);
+            //$.ajax({
+            //    type: "POST",
+            //    data: form_data,
+            //    url: "@Configuration["ServerUrl"]apis/home/saveschoolrank/1",
+            //    contentType: false,
+            //    processData: false,
+            //    success: function (data) {
+            //        console.log(data)
+            //    },
+            //    error: function (data) {
+    
+            //    }
+            //})
+    
+        })
+    
+        $('#cb-tab-1').click(()=>{
+            if($('#cb-tab-2').prop("checked")){
+                $('#cb-tab-2').prop("checked", false)
+                $('#scholarship-tab-2').hide()
+            }
+        })
+        $('#cb-tab-2').click(()=>{
+            if($('#cb-tab-1').prop("checked")){
+                $('#cb-tab-1').prop("checked", false)
+                $('#scholarship-tab-1').hide()
+            }
+        })
+    
+        DropUploadFile()
+        function DropUploadFile(){
+            $(document).on("dragover", (e)=>{
+                // console.log(e);
+                e.preventDefault();
+            })
+            $(document).on("drop", (e)=>{
+                e.preventDefault();
+                console.log(e);
+                if($(e.target).is('img.schorlarshipImage')){
+                    
+                }
+                console.log(e.originalEvent.dataTransfer.files[0]);
+                // console.log($(e.target).click());
+            })
+        }
+    
+    </script>
+</body>
+
+</html>

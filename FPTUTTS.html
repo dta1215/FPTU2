@@ -174,21 +174,30 @@
                         if(data.async){
                             const mp3Link = data.async
 
-                            const audioHTML = `
-                                <audio id="Refuse" preload="auto"> 
-                                    <source src="${await mp3Link}" type="audio/mpeg">
-                                </audio>
-                            `
-                            $(".audioNotificationArea").html(audioHTML)
-                            
-                            var obj = document.getElementById('Refuse');
-
-                            obj.addEventListener('loadeddata', function() {
-                                if(obj.readyState >= 2)
-                                {
-                                    obj.play()
-                                }
+                            const setting2 = {
+                                "url": "http://file01.fpt.ai/text2speech-v5/short/2022-01-08/17dc03c7ac17c1fd6669d06d55d133b0.mp3",
+                                "method": "GET",
+                            }
+                            $.ajax(setting2).done((res)=>{
+                                console.log(res);
                             })
+
+                            // const audioHTML = `
+                            //     <audio id="Refuse" preload="auto"> 
+                            //         <source src="${await mp3Link}" type="audio/mpeg">
+                            //     </audio>
+                            // `
+                            // $(".audioNotificationArea").html(audioHTML)
+                            
+                            // var obj = document.getElementById('Refuse');
+                            // obj.addEventListener('loadeddata', function() {
+                            //     if(obj.readyState >= 2)
+                            //     {
+                            //         obj.play()
+                            //     }else{
+                            //         alert("Have not done yet")
+                            //     }
+                            // })
 
                             // if(mp3Link){
                             //     const audioHTML = `

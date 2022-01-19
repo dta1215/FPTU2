@@ -10,7 +10,6 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <script src="./jquery.min.js"></script>
 </head>
 <style>
     body{
@@ -28,76 +27,483 @@
     .row{
         min-height: 45px;
     }
+    .btn:focus, .btn-primary:focus, .btn:active, .btn-primary:active{
+        outline: none;
+        box-shadow: none;
+    }
+    .btn, .btn-primary{
+        outline: none;
+        box-shadow: none;
+    }
+
+    @media only screen and (min-width: 1400px){
+        .label-right {
+            padding-left: 30%;
+        }
+    }
 </style>
 <body>
     <div class="FPTUContainer">
+        <!-- <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Họ và tên:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Khu vực của bộ:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Giới tính:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Điểm ưu tiên của bộ:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Ngày sinh:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Email:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Tỉnh/ Thành phố:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Số điện thoại:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Trường THPT:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Email khác:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Địa chỉ Trường THPT:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="">Số điện thoại khác:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary form-control">Lưu</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-primary form-control">Yêu cầu sửa</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
         <div class="row">
             <div class="col-md-3 LeftPanel">
                 Banner
             </div>
             <div class="col-md-9 RightPanel">
-                <div class="row">
+                <div class="row LeadInfoForm">
                     <div class="row">
-                        <div class="col-md-10">
-                            <h5>Thông tin thí sinh</h5>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h5>Thông tin thí sinh</h5>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#">Ẩn bớt</a>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <a href="#">Ẩn bớt</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Họ và tên người nhận thư:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="" class="label-right">Số điện thoại khác:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="" >Số điện thoại nhận thư:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="" class="label-right">Số điện thoại nhận thư:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="label-control">Số nhà, đường:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="row LeadInfoForm">
-                    <div class="col-md-3">
+
+                <hr>
+                <!-- hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong 
+                hoc bong  -->
+                <!-- schorlarship
+                schorlarship
+                schorlarship
+                schorlarship
+                schorlarship
+                schorlarship
+                schorlarship -->
+
+                <div class="row">
+                    <div class="row">
                         <div class="row">
-                            <label for="">Họ và tên người nhận thư:</label>
-                        </div>
-                        <div class="row">
-                            <label for="">Số điện thoại nhận thư:</label>
-                        </div>
-                        <div class="row">
-                            <label for="">Số điện thoại khác:</label>
-                        </div>
-                        <div class="row">
-                            <label for="" class="label-control">Số nhà, đường:</label>
+                            <div class="col-md-10">
+                                <h5>Đăng ký học bổng theo phương thức</h5>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#">Ẩn bớt</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="row">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Học bổng cấp thẳng
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="">Tỉnh/ Thành phố</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
-                            </div>
+                            <div class="col-md-8"></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
+                            <div class="col-md-1"></div>
+                            <!-- Cot ben trai -->
+                            <!-- cot ben trai -->
+                            <!-- cot ben trai -->
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5">Tên cuộc thi</div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" placeholder="Nhập tên cuộc thi">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="radio">
+                                        <label for="">Giải Nhất</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img src="" alt="abc">
+                                        <p>Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="radio">
+                                        <label for="">Giải Nhì</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img src="" alt="abc">
+                                        <p>Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="">Tỉnh/ Thành phố</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
+                            <!-- cot ben phai -->
+                            <!-- cot ben phai -->
+                            <!-- cot ben phai 3,14 -->
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-7">
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="radio">
+                                        <label for="">Giải Ba</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img src="" alt="abc">
+                                        <p>Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="radio">
+                                        <label for="">Chứng chỉ hoặc giấy tờ xác nhận khác </label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <img src="" alt="abc">
+                                        <p>Upload ảnh chứng chỉ</p>
+                                        <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Dự thi học bổng  du thi hoc bong -->
                         <div class="row">
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                       Dự thi học bổng 
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="">Tỉnh/ Thành phố</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control">
-                            </div>
+                            <div class="col-md-8"></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="radio">
+                                        <label for="">Tham gia đội tuyển quốc gia</label>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-1" point="tham gia doi tuyen quoc gia"></div>
+                                    <div class="col-sm-11">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="">Môn</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="">Năm</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                           <div class="col-md-7">
+                                                <img src="" alt="abc">
+                                                <p>Upload ảnh chứng chỉ</p>
+                                                <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="radio">
+                                        <label for="">Điểm GPA</label>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-1" mark="diem gpa"></div>
+                                    <div class="col-sm-11">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <label for="">Điểm</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" placeholder="So diem" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                           <div class="col-md-7">
+                                                <img src="" alt="abc">
+                                                <p>Upload ảnh chứng chỉ</p>
+                                                <button class="btn btn-primary">Tải hình ảnh lên</button>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="radio">
+                                        <label for="">Theo học bạ THPT</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-8">
+                                        <button class="btn btn-primary">Lấy School Rank</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Tỉnh/ Thành Phố:</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Top: </label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                        <label for="" class="label-control">Mã School Rank:</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,5 +511,29 @@
             </div>
         </div>
     </div>
+
+
+    <!-- <div class="row2">
+        <div class="col2-md-5 e1">
+            <h2>Họ và tên</h2>
+        </div>
+        <div class="col2-md-5 e2">
+            <input type="text" class"form-control">
+        </div>
+    </div> -->
 </body>
+<style>
+    .row2{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .col2-md-5{
+        width: 50%;
+    }
+    .col2-md-6{
+        width: 60%;
+    }
+
+</style>
 </html>

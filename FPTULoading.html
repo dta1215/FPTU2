@@ -73,9 +73,10 @@
 
 <div class="modal-Background">
     <div class="loading-Icon"></div>
-    <div class="modal-Main">
+    <div class="loading-Icon2"></div>
+    <!-- <div class="modal-Main">
         <img class="FPTlogo-Icon" src="./LogoFPTU.svg" />
-    </div>
+    </div> -->
 </div>
 
     <script>
@@ -302,7 +303,7 @@
         }
 
         $('#btnTest').click((e)=>{
-            const message = FPTUNotifyHandler.ShowMessage("A", "xyz", true).Position("BottomLeft")
+            const message = FPTUNotifyHandler.ShowMessage("A", "xyz")
             
         })
 
@@ -317,6 +318,11 @@
         })()
 
         MessageHandler.Message({title: "Message A"})
+
+        $(document).mousemove((e)=>{
+            console.log(e.target);
+        })
+
     </script>
 
 
