@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<style>
+    .progress-container {
+        display: flex;
+        margin: auto;
+        width: 70%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .icons {
+        transform: scale(0.6);
+    }
+
+    .step {
+        text-align: center;
+        width: min-content;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .mainTitle {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="row">
+        <div class="progress-container">
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Hồ sơ đăng ký</p>
+            </div>
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Trạng thái hồ sơ đăng ký</p>
+            </div>
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Hồ sơ giữ chỗ</p>
+            </div>
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Trạng thái hồ sơ giữ chỗ</p>
+            </div>
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Hồ sơ nhập học</p>
+            </div>
+            <div class="step">
+                <img class="icons" src="./icons/progress/default.png" alt="">
+                <p>Trạng thái hồ sơ nhập học</p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <h3 class="mainTitle">Message Tổng</h3>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="" class="label-control">ProgressStep</label>
+                <input id="Step" type="number" min="1" max="6" value="1" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="" class="label-control">Register Document</label>
+                <input id="Reg" type="number" min="0" max="5" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="" class="label-control">NB</label>
+                <input id="NB" type="number" min="0" max="5" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="" class="label-control">NE</label>
+                <input id="NE" type="number" min="0" max="5" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="" class="label-control">Change</label>
+                <button id="btnTest" class="form-control btn btn-primary">Change</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnTest = $('#btnTest')
+        btnTest.click(()=>{
+            let Step = $('#Step').val()
+            let Reg = $('#Reg').val()
+            let NB = $('#NB').val()
+            let NE = $('#NE').val()
+            
+            let progress = {
+                RegDoc: { Status: Reg },
+                NBDoc: { Status: NB },
+                NEDoc: { Status: NE },
+                Step: Step
+            }
+            handler2(progress)
+        })
+
+
+        function handler2(progress){
+           
+            const getCurrStatus = (step) => {
+                switch (step) {
+                    case 1:
+                    case 2:
+                        return progress.RegDoc.Status
+                        break;
+                    case 3:
+                    case 4:
+                        return progress.NBDoc.Status
+                        break;
+                    case 5:
+                    case 6:
+                        return progress.NEDoc.Status
+                        break;
+                    default:
+                        break;
+                }
+            }
+            const getIcons = (key) => {
+                switch (key) {
+                    case "white":
+                        return "./icons/progress/processing.png"
+                        break;
+                    case "blue":
+                        return "./icons/progress/waiting.png"
+                        break;
+                    case "red":
+                        return "./icons/progress/reject.png"
+                        break;
+                    case "green":
+                        return "./icons/progress/lastdone.png"
+                        break;
+                    case "green2":
+                        return "./icons/progress/done.png"
+                        break;
+                    default: break;
+                }
+            }
+
+            const Images = $('.icons')
+            let currStep = progress.Step
+            for (let step = 1; step <= currStep; step++) {
+                if(step == 1 || step == 3 || step == 5){
+                    Images.eq(step - 1).attr("src", getIcons("white"))
+                }
+                if(step == 3){
+                    Images.eq(step + 1).attr("src", getIcons("white"))
+                }
+
+                if(step == 2 || step == 4 || step == 6){
+                    if(progress.RegDoc.Status == 1 || 
+                        progress.RegDoc.Status == 2 || 
+                        progress.RegDoc.Status == 4)
+                    {
+                        Images.eq(step - 1).attr("src", getIcons("blue"))
+                    }else if (progress.RegDoc.Status == 3){
+                        Images.eq(step - 1).attr("src", getIcons("red"))
+                    }
+
+                    if(progress.NBDoc.Status == 1 || 
+                    progress.NBDoc.Status == 2 || 
+                        progress.NBDoc.Status == 4)
+                        {
+                            Images.eq(3).attr("src", getIcons("blue"))
+                        }else if (progress.NBDoc.Status == 3){
+                            Images.eq(3).attr("src", getIcons("red"))
+                        }
+                        
+                        if(progress.NEDoc.Status == 1 || 
+                        progress.NEDoc.Status == 2 || 
+                        progress.NEDoc.Status == 4)
+                        {
+                            Images.eq(5).attr("src", getIcons("blue"))
+                        }else if (progress.NEDoc.Status == 3){
+                            Images.eq(5).attr("src", getIcons("red"))
+                        }
+                    }
+                    
+                if(step == 2){
+                    Images.eq(0).attr("src", getIcons("green"))
+                }
+                if(step == 3 && progress.RegDoc.Status == 5){
+                    Images.eq(1).attr("src", getIcons("green2"))
+                }
+                // if(step == 4){
+                //     Images.eq(2).attr("src", getIcons("green"))
+                // }
+                if(step == 5 && progress.NBDoc.Status == 5){
+                    Images.eq(3).attr("src", getIcons("green2"))
+                }
+                if(step == 6){
+                    Images.eq(4).attr("src", getIcons("green"))
+                }
+                if(step == 6 && progress.NEDoc.Status == 5){
+                    Images.eq(5).attr("src", getIcons("green2"))
+                }
+                
+                if(step == 3 && progress.NBDoc.Status == 0){
+                    Images.eq(2).attr("src", getIcons("white"))
+                }
+                if(step == 4 && progress.NBDoc.Status != 0){
+                    Images.eq(2).attr("src", getIcons("green"))
+                }
+
+                if(progress.NEDoc.Status == 5){
+                    Images.eq(5).attr("src", getIcons("green2"))
+                    Images.eq(4).attr("src", getIcons("green"))
+                }
+            }
+        }
+            
+
+        function handler1() {
+            let progress = {
+                RegDoc: { Status: 5 },
+                NBDoc: { Status: 2 },
+                NEDoc: { Status: 5 },
+                Step: 6
+            }
+            const getCurrStatus = (step) => {
+                switch (step) {
+                    case 1:
+                    case 2:
+                        return progress.RegDoc.Status
+                        break;
+                    case 3:
+                    case 4:
+                        return progress.NBDoc.Status
+                        break;
+                    case 5:
+                    case 6:
+                        return progress.NEDoc.Status
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            const getIcons = (key) => {
+                switch (key) {
+                    case "white":
+                        return "./icons/progress/processing.png"
+                        break;
+                    case "blue":
+                        return "./icons/progress/waiting.png"
+                        break;
+                    case "red":
+                        return "./icons/progress/reject.png"
+                        break;
+                    case "green":
+                        return "./icons/progress/lastdone.png"
+                        break;
+                    case "green2":
+                        return "./icons/progress/done.png"
+                        break;
+                    default: break;
+                }
+            }
+
+            const Images = $('.icons')
+            const currImage = Images.eq(progress.Step - 1).attr('src', getIcons(StepHandler(progress.Step, getCurrStatus(progress.Step))))
+            if (progress.Step == 3) {
+                Images.eq(progress.Step + 1).attr('src', getIcons(StepHandler(progress.Step, getCurrStatus(progress.Step))))
+            }
+            if ((progress.Step == 5 ||
+                progress.Step == 6)
+                && progress.NBDoc.Status != 5) {
+                Images.eq(2).attr('src', getIcons("white"))
+            }
+
+            function StepHandler(step, status) {
+                switch (step) {
+                    case 1:
+                    case 3:
+                    case 5:
+                        return "white"
+                        break;
+                    case 2:
+                        if (status == 3) {
+                            return "red"
+                        } else {
+                            return "blue"
+                        }
+                        break;
+                    case 4:
+                        if (status == 3) {
+                            return "red"
+                        } else {
+                            return "blue"
+                        }
+                    case 6:
+                        if (status == 3) {
+                            return "red"
+                        } else if (status == 5) {
+                            return "green2"
+                        } else {
+                            return "blue"
+                        }
+                    default:
+                        return null
+                        break;
+                }
+            }
+
+            TitleHandler(progress.Step, getCurrStatus(progress.Step))
+            function TitleHandler(step, status) {
+                const mainTitle = $(".mainTitle")
+                let result
+
+                let documentType
+                if (step == 1 || step == 2) {
+                    documentType = "Hồ sơ đăng ký"
+                }
+                if (step == 3 || step == 4) {
+                    documentType = "Hồ sơ giữ chỗ"
+                }
+                if (step == 5 || step == 6) {
+                    documentType = "Hồ sơ nhập học"
+                }
+
+                if (step == 1 ||
+                    step == 3 ||
+                    step == 5) {
+                    result = ".... đang được cập nhật"
+                    // return "Hồ sơ xét tuyển và học bổng đang được cập nhật"
+                }
+
+                if ((step == 2 ||
+                    step == 4 ||
+                    step == 6) &&
+                    (status == 1 ||
+                        status == 2 ||
+                        status == 4)) {
+                    result = "... đang chờ duyệt"
+                }
+                if ((step == 2 ||
+                    step == 4 ||
+                    step == 6) && status == 3) {
+                    result = "... bị từ chối"
+                }
+
+                console.log(documentType, result);
+                mainTitle.text(result)
+            }
+
+            for (let step = 1; step <= progress.Step; step++) {
+                if (step == 2) {
+                    Images.eq(step - 2).attr("src", getIcons("green"))
+                }
+                if (step == 3) {
+                    Images.eq(1).attr("src", getIcons("green2"))
+                }
+                if (step == 6) {
+                    Images.eq(4).attr("src", getIcons("green"))
+                }
+                if (step == 4) {
+                    Images.eq(2).attr("src", getIcons("green"))
+                }
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
